@@ -43,9 +43,9 @@ public class AppSpieler {
     }
 
     private static void filterOrt() {
-        String ort=scanner.nextLine();
-        for (Veriene veriene:verienes){
-            if (veriene.getName().equalsIgnoreCase(ort)){
+        String ort = scanner.nextLine();
+        for (Veriene veriene : verienes) {
+            if (veriene.getName().equalsIgnoreCase(ort)) {
                 System.out.println(veriene.getName());
 
             }
@@ -55,15 +55,60 @@ public class AppSpieler {
 
     private static void showSpielerVerein() {
         System.out.println("Enter verein name");
-        String name=scanner.nextLine();
-        for (Veriene veriene:verienes){
-            if (veriene.getName().equalsIgnoreCase(name)){
+        String name = scanner.nextLine();
+        for (Veriene veriene : verienes) {
+            if (veriene.getName().equalsIgnoreCase(name)) {
                 System.out.println(veriene.getSpielers());
             }
         }
     }
 
     private static void sortPrice() {
+        System.out.println("absteigend/fallend");
+        int response = Integer.parseInt(scanner.nextLine());
+
+        switch (response) {
+            case 1:
+                absteigend();
+                break;
+            case 2:
+                fallend();
+                break;
+        }
+
+    }
+
+    private static void fallend() {
+        System.out.println("Enter id");
+        final int id = Integer.parseInt(scanner.nextLine());
+        List<Spieler> spielers1 = new ArrayList<>();
+        int[] prices;
+
+        for (Veriene veriene : verienes) {
+            if (veriene.id == id) {
+                spielers1 = veriene.getSpielers();
+                spielers1.stream().sorted().forEach(spieler -> spieler.getPrice());
+
+            }
+
+        }
+    }
+
+
+    private static void absteigend() {
+        System.out.println("Enter id");
+        final int id = Integer.parseInt(scanner.nextLine());
+        List<Spieler> spielers1 = new ArrayList<>();
+        int[] prices;
+
+        for (Veriene veriene : verienes) {
+            if (veriene.id == id) {
+                spielers1 = veriene.getSpielers();
+                spielers1.stream().sorted();
+
+            }
+
+        }
     }
 
     private static void verieneCRUD() {
@@ -98,9 +143,9 @@ public class AppSpieler {
     private static void deleteVerein() {
         System.out.println("Enter id");
         final int id = Integer.parseInt(scanner.nextLine());
-        for (Veriene veriene:verienes){
-            if (veriene.id==id){
-               // verienes.removeIf(veriene->veriene.getId()==id);
+        for (Veriene veriene : verienes) {
+            if (veriene.id == id) {
+                // verienes.removeIf(veriene->veriene.getId()==id);
             }
         }
     }
@@ -108,11 +153,12 @@ public class AppSpieler {
     private static void updateVerein() {
         System.out.println("Enter id");
         int id = Integer.parseInt(scanner.nextLine());
-        String name=scanner.nextLine();
-        String stadt=scanner.nextLine();
-        for (Veriene veriene:verienes){
-            if (veriene.id==id){
-            veriene.setName(name);}
+        String name = scanner.nextLine();
+        String stadt = scanner.nextLine();
+        for (Veriene veriene : verienes) {
+            if (veriene.id == id) {
+                veriene.setName(name);
+            }
             veriene.setStadt(stadt);
         }
     }
@@ -120,9 +166,9 @@ public class AppSpieler {
     private static void readVerein() {
         System.out.println("Enter id");
         int id = Integer.parseInt(scanner.nextLine());
-        for (Veriene veriene:verienes){
-            if (veriene.id==id){
-                System.out.println("Verein"+veriene.getName()+veriene.getStadt()+veriene.getId()+veriene.getSpielers());
+        for (Veriene veriene : verienes) {
+            if (veriene.id == id) {
+                System.out.println("Verein" + veriene.getName() + veriene.getStadt() + veriene.getId() + veriene.getSpielers());
 
             }
         }
@@ -138,9 +184,9 @@ public class AppSpieler {
         String stadt = scanner.nextLine();
 
 
-        Veriene veriene=new Veriene(id,name,stadt);
+        Veriene veriene = new Veriene(id, name, stadt);
         verienes.add(veriene);
-        System.out.println("Verein"+veriene.getName()+veriene.getStadt()+veriene.getId()+veriene.getSpielers());
+        System.out.println("Verein" + veriene.getName() + veriene.getStadt() + veriene.getId() + veriene.getSpielers());
     }
 
     private static void playerCRUD() {
