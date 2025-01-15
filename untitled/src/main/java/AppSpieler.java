@@ -146,6 +146,7 @@ public class AppSpieler {
         for (Veriene veriene : verienes) {
             if (veriene.id == id) {
                 // verienes.removeIf(veriene->veriene.getId()==id);
+                verienes.remove(veriene.getId()==id);
             }
         }
     }
@@ -183,8 +184,14 @@ public class AppSpieler {
         System.out.println("Enter stadt");
         String stadt = scanner.nextLine();
 
-
+        String spielername=scanner.nextLine();
+        String position=scanner.nextLine();
+        int age= Integer.parseInt(scanner.nextLine());
+        int price= Integer.parseInt(scanner.nextLine());
+        List<Spieler> spielers1=new ArrayList<>();
+        spielers.add(new Spieler(spielername,position,age,price));
         Veriene veriene = new Veriene(id, name, stadt);
+        veriene.setSpielers(spielers1);
         verienes.add(veriene);
         System.out.println("Verein" + veriene.getName() + veriene.getStadt() + veriene.getId() + veriene.getSpielers());
     }
@@ -224,6 +231,7 @@ public class AppSpieler {
         for (Spieler spieler : spielers) {
             if (spieler.getName().equalsIgnoreCase(name)) {
                 //spielers.removeIf(spieler->spieler.getName().equalsIgnoreCase(name));
+                spielers.remove(spieler.name.equalsIgnoreCase(name));
             }
         }
     }
